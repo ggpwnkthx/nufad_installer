@@ -7,6 +7,9 @@ SCRIPTPATH=/opt/nufad/scripts
 chmod +x $SCRIPTPATH/install_docker.sh
 $SCRIPTPATH/install_docker.sh
 
+# Make sure app is available
+git clone https://github.com/ggpwnkthx/nufad.git $APPPATH
+
 # Make sure log folder exists
 mkdir -p $APPPATH/logs/nufad
 # Assure folder permissions for package configs
