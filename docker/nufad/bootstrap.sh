@@ -18,7 +18,7 @@ if [ -z "$(grep 'MUID=' /app/configs/app.ini)" ]
 then
 	echo MUID=\"$MUID\" >> /app/configs/app.ini
 else
-	sed -i 's/^\(MUID\s*=\s*\).*\$/\1"$MUID"/' /app/configs/app.ini
+	sed -i "s/^\(MUID\s*=\s*\).*\$/\1\"$MUID\"/" /app/configs/app.ini
 fi
 
 export DOCKER_BRIDGE

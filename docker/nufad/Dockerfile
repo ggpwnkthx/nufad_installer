@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:10-slim
 
 LABEL maintainer "Isaac Jessup <ibjessup@gmail.com>"
 LABEL description "NUFAD - Nginx, uWSGI, Flask powered API on Debian"
