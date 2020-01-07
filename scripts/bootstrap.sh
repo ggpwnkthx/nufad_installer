@@ -97,7 +97,7 @@ esac
 # Ensure proper installation location
 git clone https://github.com/ggpwnkthx/nufad.git $SCRIPTPATH/../nufad
 cp -RfT $SCRIPTPATH/../.. /opt
-mv /opt/nufact_installer /opt/nufad
+mv /opt/nufad_installer /opt/nufad
 
 # Ensure the sudo group exists
 $SCRIPTPATH/add_group.sh sudo
