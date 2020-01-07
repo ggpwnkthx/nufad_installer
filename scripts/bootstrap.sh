@@ -2,6 +2,7 @@ if [ "$0" != "/opt/nufad/scripts/bootstrap.sh" ]
 then
 	rm -R /opt/nufad
 fi
+SCRIPTPATH=$(dirname "$0")
 
 # Add nufad user
 chmod +x $SCRIPTPATH/add_user.sh
@@ -94,7 +95,6 @@ case $package_manager in
 esac
 
 # Ensure proper installation location
-SCRIPTPATH=$(dirname "$0")
 git clone https://github.com/ggpwnkthx/nufad.git $SCRIPTPATH/../../nufad
 cp -RfT $SCRIPTPATH/../../nufad /opt/nufad
 
