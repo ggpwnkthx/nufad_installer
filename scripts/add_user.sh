@@ -1,3 +1,8 @@
+#Environment
+if [ -z "$(echo $PATH | grep '/usr/sbin')" ]
+then
+	export PATH=/usr/sbin:$PATH
+fi
 # Add user
 if [ -z "$(cat /etc/shadow | grep nufad:)" ]
 then
