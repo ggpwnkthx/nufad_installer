@@ -3,10 +3,6 @@ then
 	rm -R /opt/nufad
 fi
 
-# Ensure proper installation location
-SCRIPTPATH=$(dirname "$0")
-cp -RfT $SCRIPTPATH/../../nufad /opt/nufad
-
 # Add nufad user
 chmod +x $SCRIPTPATH/add_user.sh
 $SCRIPTPATH/add_user.sh nufad
@@ -37,6 +33,10 @@ case $package_manager in
 		then
 			apk add curl
 		fi
+		if [ -z "$(command -v git)" ]
+		then
+			apk add git
+		fi
 		if [ -z "$(command -v nc)" ]
 		then
 			apk add netcat-openbsd
@@ -59,6 +59,10 @@ case $package_manager in
 		do
 			apt-get install -y sudo
 		done
+		while [ "$(dpkg -s git 2>/dev/null | grep Status | awk '{print $2}')" != "install" ]
+		do
+			apt-get install -y git
+		done
 		while [ "$(dpkg -s netcat 2>/dev/null | grep Status | awk '{print $2}')" != "install" ]
 		do
 			apt-get install -y netcat
@@ -70,14 +74,14 @@ case $package_manager in
 		;;
 	"yum")
 		yum update -y
-		yum install -y sudo curl nc
+		yum install -y sudo curl git nc
 		if [ -z "$(echo 'dummy' | nc localhost 22 | grep SSH)" ]
 		then
 			yum install -y openssh
 		fi
 		;;
 	"dnf")
-		dnf -y install sudo curl nmap
+		dnf -y install sudo curl git nmap
 		if [ -z "$(echo 'dummy' | nc localhost 22 | grep SSH)" ]
 		then
 			dnf -y install openssh
@@ -88,6 +92,11 @@ case $package_manager in
 		exit 2
 		;;
 esac
+
+# Ensure proper installation location
+SCRIPTPATH=$(dirname "$0")
+git clone https://github.com/ggpwnkthx/nufad.git $SCRIPTPATH/../../nufad
+cp -RfT $SCRIPTPATH/../../nufad /opt/nufad
 
 # Ensure the sudo group exists
 $SCRIPTPATH/add_group.sh sudo
