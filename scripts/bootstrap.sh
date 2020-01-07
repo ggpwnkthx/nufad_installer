@@ -95,8 +95,8 @@ case $package_manager in
 esac
 
 # Ensure proper installation location
-git clone https://github.com/ggpwnkthx/nufad.git $SCRIPTPATH/../../nufad
-cp -RfT $SCRIPTPATH/../../nufad /opt/nufad
+git clone https://github.com/ggpwnkthx/nufad.git $SCRIPTPATH/../nufad
+cp -RfT $SCRIPTPATH/../.. /opt/nufad
 
 # Ensure the sudo group exists
 $SCRIPTPATH/add_group.sh sudo
