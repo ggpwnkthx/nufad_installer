@@ -1,3 +1,8 @@
+#Environment
+if [ -z "$(echo $PATH | grep '/usr/sbin')" ]
+then
+	export PATH=/usr/sbin:$PATH
+fi
 # Add user to a group
 in_group=0
 #if [ ! -z "$(grep ^$2: /etc/group)" ]
