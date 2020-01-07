@@ -95,7 +95,6 @@ case $package_manager in
 esac
 
 # Ensure proper installation location
-git clone https://github.com/ggpwnkthx/nufad.git $SCRIPTPATH/../nufad
 cp -RfT $SCRIPTPATH/../.. /opt
 mv /opt/nufad_installer /opt/nufad
 
