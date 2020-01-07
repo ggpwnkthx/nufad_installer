@@ -5,8 +5,8 @@ if [ -z "$(command -v docker)" ]
 then
 	echo "Installing Docker..."
 	
-	curl -fsSL https://get.docker.com -o get-docker.sh
-	sh get-docker.sh
+	curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+	sh /tmp/get-docker.sh
 fi
 
 # Start the docker service
