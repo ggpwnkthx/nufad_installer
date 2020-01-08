@@ -7,6 +7,7 @@ RUN apt-get update
 RUN apt-get install -y \
 	python3.7-minimal \
 	python3-pip \
+	openssl \
 	nginx \
 	uwsgi \
 	uwsgi-plugin-python3 \
