@@ -1,8 +1,11 @@
+SCRIPTPATH=$(dirname "$0")
 if [ "$0" != "/opt/nufad/scripts/bootstrap.sh" ]
 then
 	rm -R /opt/nufad
+	# Ensure proper installation location
+	cp -RfT $SCRIPTPATH/../.. /opt
+	mv /opt/nufad_installer /opt/nufad
 fi
-SCRIPTPATH=$(dirname "$0")
 
 # Add nufad user
 chmod +x $SCRIPTPATH/add_user.sh
@@ -93,10 +96,6 @@ case $package_manager in
 		exit 2
 		;;
 esac
-
-# Ensure proper installation location
-cp -RfT $SCRIPTPATH/../.. /opt
-mv /opt/nufad_installer /opt/nufad
 
 # Ensure the sudo group exists
 $SCRIPTPATH/add_group.sh sudo
