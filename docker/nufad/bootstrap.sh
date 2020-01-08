@@ -21,6 +21,22 @@ else
 	sed -i "s/^\(MUID\s*=\s*\).*\$/\1\"$MUID\"/" /app/configs/app.ini
 fi
 
+# Create 20 year SSL certificate (if one does not exist) for HTTPS. 
+# !!!! You SHOULD DEFINITELY use your own trusted certificate. Not this auto-generated one. !!!!
+if [ ! -d /app/certs ]
+then
+	mkdir /app/certs
+fi
+if [ ! -f /app/certs/ssl.crt ]
+then
+	openssl genrsa -out /app/certs/ssl.pass.key 2048
+	openssl rsa -in /app/certs/ssl.pass.key -out /app/certs/ssl.key
+	rm /app/certs/ssl.pass.key
+	openssl req -new -key /app/certs/ssl.key -out /app/certs/ssl.csr \
+		-subj "/C=NA/ST=NA/"
+	openssl x509 -req -days 7120 -in /app/certs/ssl.csr -signkey /app/certs/ssl.key -out /app/certs/ssl.crt
+fi
+
 export DOCKER_BRIDGE
 export MUID
 
