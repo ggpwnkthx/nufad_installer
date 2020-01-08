@@ -29,6 +29,10 @@ cp ~/.ssh/authorized_keys $APPPATH/configs/packages/ssh/local/nufad
 
 # Create 20 year SSL certificate (if one does not exist) for HTTPS. 
 # !!!! You SHOULD DEFINITELY use your own trusted certificate. Not this auto-generated one. !!!!
+if [ ! -d $APPPATH/certs ]
+then
+	mkdir $APPPATH/certs
+fi
 if [ ! -f $APPPATH/certs/ssl.crt ]
 then
 	openssl genrsa -out $APPPATH/certs/ssl.pass.key 2048
