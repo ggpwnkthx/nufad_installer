@@ -1,5 +1,5 @@
 # Purpose
-(N)ginx, (U)wsgi, and (F)lask providing an (A)pi in a (D)ocker container
+(N)ginx, (U)wsgi, and (F)lask providing an (A)pi from a (D)ocker container
 
 NUFAD is a dockerized web service designed to provide a modular API writen in Python for enterprise use.
 
