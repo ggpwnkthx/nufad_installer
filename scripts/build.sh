@@ -27,22 +27,6 @@ fi
 mkdir -p $APPPATH/configs/packages/ssh/local
 cp ~/.ssh/authorized_keys $APPPATH/configs/packages/ssh/local/nufad
 
-# Create 20 year SSL certificate (if one does not exist) for HTTPS. 
-# !!!! You SHOULD DEFINITELY use your own trusted certificate. Not this auto-generated one. !!!!
-if [ ! -d $APPPATH/certs ]
-then
-	mkdir $APPPATH/certs
-fi
-if [ ! -f $APPPATH/certs/ssl.crt ]
-then
-	openssl genrsa -out $APPPATH/certs/ssl.pass.key 2048
-	openssl rsa -in $APPPATH/certs/ssl.pass.key -out $APPPATH/certs/ssl.key
-	rm $APPPATH/certs/ssl.pass.key
-	openssl req -new -key $APPPATH/certs/ssl.key -out $APPPATH/certs/ssl.csr \
-		-subj "/C=NA/ST=NA/"
-	openssl x509 -req -days 7120 -in $APPPATH/certs/ssl.csr -signkey $APPPATH/certs/ssl.key -out $APPPATH/certs/ssl.crt
-fi
-
 # Build the Docker image
 nufad_build="docker build -t nufad $DOCKERPATH/nufad"
 if [ -z "$(sudo docker images | grep nufad)" ]
